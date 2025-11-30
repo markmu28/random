@@ -2,9 +2,9 @@
 $wsh = New-Object -ComObject WScript.Shell
 
 Clear-Host
-Write-Host "--- Windows Keep Awake Script ---" -ForegroundColor Cyan
+Write-Host "--- Windows Keep Awake Script (Randomized) ---" -ForegroundColor Cyan
 Write-Host "Status: Active" -ForegroundColor Green
-Write-Host "Action: Pressing virtual 'F15' key every 60 seconds."
+Write-Host "Action: Pressing virtual 'F15' key at random intervals."
 Write-Host "Window: Minimize this window to keep running."
 Write-Host "Stop: Close this window." -ForegroundColor Yellow
 
@@ -13,9 +13,12 @@ while ($true) {
     # but Windows registers it as activity)
     $wsh.SendKeys("{F15}")
     
-    # Optional: Uncomment the line below if you want to see a log of every press
-    # Write-Host "Activity sent at $(Get-Date -Format 'HH:mm:ss')" -ForegroundColor DarkGray
+    # Generate a random sleep time between 2 and 60 seconds
+    $randomSeconds = Get-Random -Minimum 2 -Maximum 61
+    
+    # Optional: Log the next press time
+    # Write-Host "Activity sent. Next press in $randomSeconds seconds." -ForegroundColor DarkGray
 
-    # Wait 60 seconds before pressing again
-    Start-Sleep -Seconds 60
+    # Wait for the random duration
+    Start-Sleep -Seconds $randomSeconds
 }
