@@ -1,0 +1,21 @@
+# Create a shell object to simulate keystrokes
+$wsh = New-Object -ComObject WScript.Shell
+
+Clear-Host
+Write-Host "--- Windows Keep Awake Script ---" -ForegroundColor Cyan
+Write-Host "Status: Active" -ForegroundColor Green
+Write-Host "Action: Pressing virtual 'F15' key every 60 seconds."
+Write-Host "Window: Minimize this window to keep running."
+Write-Host "Stop: Close this window." -ForegroundColor Yellow
+
+while ($true) {
+    # Send F15 key (This key doesn't exist on most keyboards and does nothing,
+    # but Windows registers it as activity)
+    $wsh.SendKeys("{F15}")
+    
+    # Optional: Uncomment the line below if you want to see a log of every press
+    # Write-Host "Activity sent at $(Get-Date -Format 'HH:mm:ss')" -ForegroundColor DarkGray
+
+    # Wait 60 seconds before pressing again
+    Start-Sleep -Seconds 60
+}

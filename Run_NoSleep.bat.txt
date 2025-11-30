@@ -1,0 +1,10 @@
+@echo off
+title Keep Awake Tool
+echo Starting Keep Awake script...
+echo.
+echo NOTE: Do not close this window. Minimize it to keep the computer awake.
+echo.
+
+PowerShell.exe -ExecutionPolicy Bypass -File "keep_awake.ps1"
+
+pause
